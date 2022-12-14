@@ -86,7 +86,7 @@ $resIMG = mysqli_fetch_assoc($resultIMG);
                 }
             }
 
-            ?>
+        ?>
         </tr>
     </tbody>
 </table>
