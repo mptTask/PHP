@@ -74,11 +74,13 @@ $user_id = $_SESSION['user_id'];
  ON backet.goods_id = tovar.ID_tovar
  WHERE user_id =  $user_id") or die(mysqli_error($link));
 
-    
+    $summa_backet = 0;
  
  foreach ($result_tovat as $result_tovat) {
+
     
     //var_dump($result_tovat);
+
 
      echo '<tr>
              <td><a href="tovar_edit.php?id='.$result_tovat['ID_tovar'].'">'.$result_tovat['ID_tovar'].'</td>
@@ -97,6 +99,7 @@ $user_id = $_SESSION['user_id'];
                    if ($counts == null){
                         echo '<a href="edit_backet.php?id='.$result_tovat['ID_tovar'].'">0 товаров'."</a>";
                    }    else {
+                        $summa_backet += $res['count'] * $result_tovat['price'];
                         echo '<a href="edit_backet.php?id='.$result_tovat['ID_tovar'].'">'.$res['count'] . ' товаров на сумму: ' . ($res['count'] * $result_tovat['price']) ."</a>";
                    }
 
@@ -107,3 +110,5 @@ $user_id = $_SESSION['user_id'];
  }
  
  echo '</table>';
+
+ echo "Сумма: " . $summa_backet;
